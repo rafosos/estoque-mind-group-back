@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     const {nome, descricao, imagem, valor, quantidade} = req.body;
 
     try{
-        const prod = await Produto.create({nome, descricao, imagem, valor, quantidade});
+        const prod = await Produto.create({nome, descricao, imagem, valor, quantidade, userId: req.userId});
         res.status(201).json({prod});
     }catch(error){
         res.status(402).json({error});
@@ -38,9 +38,9 @@ router.get('/', async(req, res) => {
 });
 
 router.delete('/:id', async(req, res) => {
-    const id = req.params;
+    const {id} = req.params;
     try{
-        await Produto.destroy({where: {id}});
+        await Produto.destroy({where: {id: id, userId: req.userId}});
         res.status(200).json({id});
     }catch(error){
         res.status(402).json({error});

@@ -16,7 +16,7 @@ const auth = (req, res, next) => {
             function(err, decodedToken) {
                 if(err) return res.status(401).json({message: "Erro com token.", erro: err});
                 else{
-                    res.userId = decodedToken.id
+                    req.userId = decodedToken.id
                 }
             });
         next();

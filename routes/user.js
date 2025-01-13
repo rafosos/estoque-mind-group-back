@@ -9,7 +9,7 @@ router.patch('/', async (req, res) => {
     const fieldsToUpdate = req.body;
 
     try{
-        await User.update(fieldsToUpdate, {where: {req.userId}});
+        await User.update(fieldsToUpdate, {where: {id: req.userId}});
         res.status(200).json({updatedFields: fieldsToUpdate});
     } catch(error){
         res.status(402).json({error});
