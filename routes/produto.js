@@ -31,7 +31,7 @@ router.patch('/:id/quantidade', async (req, res) => {
 router.get('/', async(req, res) => {
     try{
         const produtos = await Produto.findAll({where: {userId: req.userId}});
-        res.status(200).json({produtos});
+        res.status(200).json(produtos);
     }catch(error){
         res.status(402).json({error});
     }
