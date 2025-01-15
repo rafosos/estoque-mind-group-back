@@ -8,9 +8,9 @@ router.post('/login', async (req, res) => {
     const { email, senha } = req.body;
 
     const usuario = await User.findOne({where: { email }});
- 
     if (!usuario) {
         res.status(402).send('Usuário não encontrado');
+        return;
     }
 
     if (await bcrypt.compare(senha, usuario.senha)) {
