@@ -15,14 +15,14 @@ const Produto = sequelize.define('produto', {
     }, 
     descricao: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     imagem:{
-        type: Sequelize.BLOB,
+        type: Sequelize.BLOB('medium'),
         allowNull: true
     },
     valor:{
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: true,
         validate:{
             min: 0,
